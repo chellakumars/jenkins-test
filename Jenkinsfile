@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
 		script {    
-			if (parameters.Repository == 'New') {
+			if (params.Repository == 'New') {
                     		sh "aws ecr create-repository --repository-name ${Repo_ID}"
                 	} 
                 	else {
