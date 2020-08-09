@@ -22,8 +22,10 @@ pipeline {
                     sh "git init"
                     echo "${url}"
                     sh "git clone ${url}"
-                    sh "docker build -t ${Repo_ID} ."
-                    sh "docker tag ${Repo_ID}:latest ${ACCOUNT_ID}.dkr.ecr.${region}.amazonaws.com/${Repo_ID}:latest"
+                    dir("ecs-example/") {
+                        sh "docker build -t ${Repo_ID} ."
+                        sh "docker tag ${Repo_ID}:latest ${ACCOUNT_ID}.dkr.ecr.${region}.amazonaws.com/${Repo_ID}:latest"
+                    }
                 }
             }
         }    
