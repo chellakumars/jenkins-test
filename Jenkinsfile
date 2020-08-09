@@ -1,21 +1,18 @@
 pipeline {
     agent any
-    
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     stages {
         stage('Build') {
             steps {
-                echo "Listing contents of an S3 bucket."
-                }
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
             }
-        }    
-    }
-    post {
-        success {
-            echo "Build SUCCESS"
-        }
-
-        failure {
-            echo "Build FAILED"
         }
     }
 }
