@@ -16,7 +16,7 @@ pipeline {
             steps {
 		script {    
 			if (params.Repository == 'New') {
-                    		sh "aws ecr create-repository --repository-name ${Repo_ID}"
+                    		sh "aws ecr create-repository --repository-name ${Repo_ID} --region ap-south-1"
                 	} 
                 	else {
 	                	echo 'Using existing repo'
