@@ -3,6 +3,9 @@ pipeline {
     parameters {
         choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
     }
+    input {
+        message 'Please enter the Repository name'
+    }
 
     environment {
         DISABLE_AUTH = 'true'
