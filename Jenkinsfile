@@ -6,7 +6,7 @@ pipeline {
         region = 'ap-south-1'
     }
     parameters {
-        choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
+        choice choices: ['Existing', 'New'], description: '', name: 'env'
         string defaultValue: '', description: '', name: 'Repo_ID', trim: true
         string defaultValue: '', description: '', name: 'url', trim: true
         string defaultValue: '', description: '', name: 'ACCOUNT_ID', trim: true
@@ -14,6 +14,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                if (${env} == 'New') {
+                    sh "aws ecr create-repository --repository-name ${Repo_ID'}"
+                } 
+                else {
+	                echo 'Using existing repo'
+                }
                 echo "Listing contents of an S3 bucket."
                 sh "git init"
                 sh "rm -rf ecs-example"
