@@ -1,8 +1,7 @@
 pipeline {
     agent any
-
     parameters {
-        booleanParam(defaultValue: true, description: '', name: 'userFlag')
+        choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
     }
 
     stages {
