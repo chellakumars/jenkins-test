@@ -19,6 +19,7 @@ pipeline {
                 sh "rm -rf ecs-example"
                 dir("ecs-example/") {
                     sh "whoami"
+                    sh "git init"
                     echo "${url}"
                     sh "git clone ${url}"
                     sh "docker build -t ${Repo_ID} ."
