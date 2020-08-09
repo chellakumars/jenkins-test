@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 if (${env} == 'New') {
-                    sh "aws ecr create-repository --repository-name ${Repo_ID'}"
+                    sh "aws ecr create-repository --repository-name ${Repo_ID}"
                 } 
                 else {
 	                echo 'Using existing repo'
