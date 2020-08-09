@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def deployOptions = 'no\nyes'
     stages {
 
         stage('testing pipeline'){
