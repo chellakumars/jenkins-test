@@ -14,12 +14,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                if (${env} == 'New') {
-                    sh "aws ecr create-repository --repository-name ${Repo_ID}"
-                } 
-                else {
-	                echo 'Using existing repo'
-                }
+		script {    
+                	if (${env} == 'New') {
+                    		sh "aws ecr create-repository --repository-name ${Repo_ID}"
+                	} 
+                	else {
+	                	echo 'Using existing repo'
+                	}
+		}	
                 echo "Listing contents of an S3 bucket."
                 sh "git init"
                 sh "rm -rf ecs-example"
