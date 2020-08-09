@@ -8,7 +8,7 @@ pipeline {
     parameters {
         choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
         string defaultValue: '', description: '', name: 'Repo_ID', trim: true
-        string defaultValue: '', description: '', name: 'GIT url', trim: true
+        string defaultValue: '', description: '', name: 'GIT_url', trim: true
         string defaultValue: '', description: '', name: 'ACCOUNT_ID', trim: true
     }
     stages {
