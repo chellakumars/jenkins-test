@@ -10,6 +10,7 @@ pipeline {
         string defaultValue: '', description: '', name: 'Repo_ID', trim: true
         string defaultValue: '', description: '', name: 'url', trim: true
         string defaultValue: '', description: '', name: 'ACCOUNT_ID', trim: true
+	string defaultValue: '', description: '', name: 'Project_Name', trim: true
     }
     stages {
         stage('Build') {
@@ -30,7 +31,7 @@ pipeline {
                     sh "git init"
                     echo "${url}"
                     sh "git clone ${url}"
-                    dir("ecs-example/") {
+			dir("${Project_Name}/") {
                         sh "docker build -t ${Repo_ID} ."
                         sh "docker tag ${Repo_ID}:latest ${ACCOUNT_ID}.dkr.ecr.${region}.amazonaws.com/${Repo_ID}:latest"
                     }
