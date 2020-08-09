@@ -8,7 +8,7 @@ pipeline {
     parameters {
         choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
         string defaultValue: '', description: '', name: 'Repo_ID', trim: true
-        string defaultValue: '', description: '', name: 'GIT_url', trim: true
+        string defaultValue: '', description: '', name: 'url', trim: true
         string defaultValue: '', description: '', name: 'ACCOUNT_ID', trim: true
     }
     stages {
@@ -19,8 +19,8 @@ pipeline {
                 sh "rm -rf ecs-example"
                 dir("ecs-example/") {
                     sh "whoami"
-                    echo "${GIT_url}"
-                    sh "git clone ${GIT_url}"
+                    echo "${url}"
+                    sh "git clone ${url}"
                     sh "docker build -t ${Repo_ID} ."
                     sh "docker tag ${Repo_ID}:latest ${ACCOUNT_ID}.dkr.ecr.${region}.amazonaws.com/${Repo_ID}:latest"
                 }
