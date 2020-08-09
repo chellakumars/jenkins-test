@@ -2,6 +2,10 @@
 pipeline {
     // This line is required for declarative pipelines. Just keep it here.
     agent any
+    parameters {
+        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+        choice(choices: ['US-EAST-1', 'US-WEST-2'], description: 'What AWS region?', name: 'region')
+    }
 
     // This section contains environment variables which are available for use in the
     // pipeline's stages.
