@@ -1,14 +1,21 @@
 pipeline {
     agent any
-    parameters {
-        choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
-    }
-    echo "${env}"
+    
     stages {
-        stage("foo") {
+        stage('Build') {
             steps {
-                echo "${env}"
+                echo "Listing contents of an S3 bucket."
+                }
             }
+        }    
+    }
+    post {
+        success {
+            echo "Build SUCCESS"
+        }
+
+        failure {
+            echo "Build FAILED"
         }
     }
 }
