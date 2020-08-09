@@ -6,7 +6,7 @@ pipeline {
         region = 'ap-south-1'
     }
     parameters {
-        choice choices: ['Existing', 'New'], description: '', name: 'env'
+        choice choices: ['Existing', 'New'], description: '', name: 'Repository'
         string defaultValue: '', description: '', name: 'Repo_ID', trim: true
         string defaultValue: '', description: '', name: 'url', trim: true
         string defaultValue: '', description: '', name: 'ACCOUNT_ID', trim: true
@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
 		script {    
-                	if (${env} == 'New') {
+			if (parameters.Repository == 'New') {
                     		sh "aws ecr create-repository --repository-name ${Repo_ID}"
                 	} 
                 	else {
