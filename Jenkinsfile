@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         choice choices: ['Dev', 'Prod', 'Qa'], description: '', name: 'env'
-        string defaultValue: '', description: '', name: 'Please enter the repository name', trim: true
+        string defaultValue: '', description: '', name: 'Please enter the repository name :', trim: true
     }
 
     environment {
