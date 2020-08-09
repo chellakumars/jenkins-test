@@ -20,6 +20,7 @@ pipeline {
         stage('Example') {
             steps {
                 // This is a step of type "echo". It doesn't do much, only prints some text.
+		sh "echo ${params.region}"
                 echo 'This is a sample stage'
 		echo '${env}'
                 // For a list of all the supported steps, take a look at
