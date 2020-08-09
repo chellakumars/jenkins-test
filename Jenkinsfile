@@ -17,10 +17,10 @@ pipeline {
                 echo "Listing contents of an S3 bucket."
                 sh "git init"
                 sh "rm -rf ecs-example"
-                sh "git init"
-                sh "git clone ${GIT_url}"
                 dir("ecs-example/") {
                     sh "whoami"
+                    sh "git init"
+                    sh "git clone ${GIT_url}"
                     sh "docker build -t ${Repo_ID} ."
                     sh "docker tag ${Repo_ID}:latest ${ACCOUNT_ID}.dkr.ecr.${region}.amazonaws.com/${Repo_ID}:latest"
                 }
